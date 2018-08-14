@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Test Proximus</title>
+</head>
+<body>
+	<h1>i18n id Attribute change innerhtml</h1>
+	<br>
+	<hr>
+	<!-- Good -->
+	<p class="i18n" id="title">not working</p>
+	<!-- Repeat id -->
+	<p class="i18n" id="title">not working</p>
+	<!-- Id not on object -->
+	<p class="i18n" id="noTitle">not working</p>
+	<!-- empty id -->
+	<p class="i18n" id="">not working</p>
+	<!-- undefined id -->
+	<p class="i18n">not working</p>
+	<hr>
+	<br><br>
+
+	<h1>i18nAtt data-i18n Attribute change innerhtml</h1>
+	<br>
+	<hr>
+	<!-- Good -->
+	<p class="i18nAtt" data-i18n="titleAtt">not working</p>
+	<!-- Repeat id -->
+	<p class="i18nAtt" data-i18n="titleAtt">not working</p>
+	<!-- Id not on object -->
+	<p class="i18nAtt" data-i18n="noTitle">not working</p>
+	<!-- empty id -->
+	<p class="i18nAtt" data-i18n="">not working</p>
+	<!-- undefined id -->
+	<p class="i18nAtt">not working</p>
+	<hr>
+	<br><br>
+
+	<h1>i18nImg data-i18n Attribute change src</h1>
+	<br>
+	<hr>
+	<!-- Good -->
+	<img src="http://via.placeholder.com/250x250" alt="not working img" data-i18n="img" class="i18nImg">
+	<!-- Repeat id -->
+	<img src="http://via.placeholder.com/250x250" alt="not working img" data-i18n="img" class="i18nImg">
+	<!-- Id not on object -->
+	<img src="http://via.placeholder.com/250x250" alt="not working img" data-i18n="NoImg" class="i18nImg">
+	<!-- empty id -->
+	<img src="http://via.placeholder.com/250x250" alt="not working img" data-i18n="" class="i18nImg">
+	<!-- undefined id -->
+	<img src="http://via.placeholder.com/250x250" alt="not working img" class="i18nImg">
+	<hr>
+	<br><br>
+
+	<script src="./proximus.js"></script>
+	<script>
+		let testObj = {
+			en:{
+				title: 'This is a test using "id" attribute',
+				titleAtt: 'This is a test using "data-i18n" attribute',
+				img: 'http://via.placeholder.com/250x250/0ea00e/fff/?text=works!'
+			},
+			es:{
+				title2: 'Esta es una preuba con el attributo: "id"',
+				titleAtt2: 'Esta es una preuba con el attributo: "data-i18n"',
+				img2: 'http://via.placeholder.com/250x250/0ea00e/fff/?text=Existo!'
+			}
+		};
+
+		/* global proximus */
+		proximus.init(testObj);
+	</script>
+</body>
+</html>
