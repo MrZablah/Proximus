@@ -1,11 +1,11 @@
 // Note: Proximus with no jquery requierments
-/* global cookies */ 
-let proximus = (cookieCtrl => { // eslint-disable-line
+/* global cookie */ 
+let proximus = ((cookieCtrl, window) => { // eslint-disable-line
 	let proximusObj = {
 		defaultLngName: 'en',
 		defaultcookieName: 'lng',
 		lngByIdClass: '.i18n',
-		lngImgClass: '.imgi18n',
+		lngImgClass: '.i18nImg',
 		lngByAtrrClass: '.i18nAtt',
 		lngAtrrName: 'data-i18n'
 	};
@@ -43,16 +43,17 @@ let proximus = (cookieCtrl => { // eslint-disable-line
 		return language;
 	};
 
-	// Note: get all html with that class and change the context base on language object
+	// Note: get all html with that class and change the context, base on language object
 	const changeEachInnerHtml = (classToCheck, langObject, attribute) => {
 		document.querySelectorAll(classToCheck).forEach((el) => {
 			try {
-				if (langObject[el.getAttribute(attribute)]) {
-					el.innerHTML = langObject[el.getAttribute(attribute)];
-				} else if (!langObject[el.getAttribute(attribute)]) {
+				let attVal = el.getAttribute(attribute);
+				if (langObject[attVal]) {
+					el.innerHTML = langObject[attVal];
+				} else if (!langObject[attVal] || attVal === undefined) {
 					el.innerHTML = `Missing ${attribute} value`;
 				} else {
-					el.innerHTML = el.getAttribute(attribute);
+					el.innerHTML = attVal;
 				}
 			} catch (e) {
 				console.log(e); // eslint-disable-line
@@ -60,16 +61,18 @@ let proximus = (cookieCtrl => { // eslint-disable-line
 		});
 	};
 	
-	// Note: get all html with that class and change the context base on language object
+	// Note: get all html with that class and change the src, base on language object
 	const changeEachHtmlSrc = (classToCheck, langObject, attribute) => {
 		document.querySelectorAll(classToCheck).forEach((el) => {
 			try {
-				if (langObject[el.getAttribute(attribute)]) {
-					el.src = langObject[el.getAttribute(attribute)];
-				} else if (!langObject[el.getAttribute(attribute)]) {
-					el.src = `Missing ${attribute} value`;
+				let attVal = el.getAttribute(attribute);
+				if (langObject[attVal]) {
+					el.src = langObject[attVal];
+				} else if (!langObject[attVal]) {
+					el.src = `Missing${attribute}Value`;
+					el.alt = `Missing ${attribute} value`;
 				} else {
-					el.src = el.getAttribute(attribute);
+					el.src = attVal;
 				}
 			} catch (e) {
 				console.log(e); // eslint-disable-line
@@ -84,14 +87,18 @@ let proximus = (cookieCtrl => { // eslint-disable-line
 		changeEachInnerHtml(proximusObj.lngByIdClass, langObj, 'id');
 		
 		// Change by attribute
-		changeEachInnerHtml(proximusObj.lngByIdClass, langObj, proximusObj.lngAtrrName);
+		changeEachInnerHtml(proximusObj.lngByAtrrClass, langObj, proximusObj.lngAtrrName);
 		
 		// Change src by attribute
 		changeEachHtmlSrc(proximusObj.lngImgClass, langObj, proximusObj.lngAtrrName);
+
+		// Note: add a wey to return object and select value by somthing like data-value  
+
+		// Note: add a way to add your tagname and change that tag name base on your obj
 	};
 
 	return {
-		init: function(
+		init(
 			langObj,
 			lng = proximusObj.defaultLngName,
 			cookieName = proximusObj.defaultcookieName
@@ -99,16 +106,16 @@ let proximus = (cookieCtrl => { // eslint-disable-line
 			setupEventListeners(langObj, lng, cookieName);
 		},
 
-		change: function(newValue, cookieName = proximusObj.defaultcookieName) {
+		change(newValue, cookieName = proximusObj.defaultcookieName) {
 			replaceUrlCookie(cookieName, newValue);
 		},
 
-		getVariables: function() {
+		getVariables() {
 			return proximusObj;
 		}
 	};
 
-})(cookies);
+})(cookie, window);
 
 // Init
 // proximus.init(bundle, "es", "lnp");
