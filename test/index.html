@@ -55,6 +55,59 @@
 	<hr>
 	<br><br>
 
+	<hr>
+	<h1>Another proximus instance!</h1>
+	<hr>
+	<br>
+
+	<h1>i18n id Attribute change innerhtml</h1>
+	<br>
+	<hr>
+	<!-- Good -->
+	<p class="i18n" id="title2">not working</p>
+	<!-- Repeat id -->
+	<p class="i18n" id="title2">not working</p>
+	<!-- Id not on object -->
+	<p class="i18n" id="noTitle2">not working</p>
+	<!-- empty id -->
+	<p class="i18n" id="">not working</p>
+	<!-- undefined id -->
+	<p class="i18n">not working</p>
+	<hr>
+	<br><br>
+
+	<h1>i18nAtt data-i18n Attribute change innerhtml</h1>
+	<br>
+	<hr>
+	<!-- Good -->
+	<p class="i18nAtt" data-i18n="titleAtt2">not working</p>
+	<!-- Repeat id -->
+	<p class="i18nAtt" data-i18n="titleAtt2">not working</p>
+	<!-- Id not on object -->
+	<p class="i18nAtt" data-i18n="noTitle2">not working</p>
+	<!-- empty id -->
+	<p class="i18nAtt" data-i18n="">not working</p>
+	<!-- undefined id -->
+	<p class="i18nAtt">not working</p>
+	<hr>
+	<br><br>
+
+	<h1>i18nImg data-i18n Attribute change src</h1>
+	<br>
+	<hr>
+	<!-- Good -->
+	<img src="http://via.placeholder.com/250x250" alt="not working img" data-i18n="img2" class="i18nImg">
+	<!-- Repeat id -->
+	<img src="http://via.placeholder.com/250x250" alt="not working img" data-i18n="img2" class="i18nImg">
+	<!-- Id not on object -->
+	<img src="http://via.placeholder.com/250x250" alt="not working img" data-i18n="NoImg2" class="i18nImg">
+	<!-- empty id -->
+	<img src="http://via.placeholder.com/250x250" alt="not working img" data-i18n="" class="i18nImg">
+	<!-- undefined id -->
+	<img src="http://via.placeholder.com/250x250" alt="not working img" class="i18nImg">
+	<hr>
+	<br><br>
+
 	<script src="./proximus.js"></script>
 	<script>
 		let testObj = {
@@ -64,14 +117,30 @@
 				img: 'http://via.placeholder.com/250x250/0ea00e/fff/?text=works!'
 			},
 			es:{
-				title2: 'Esta es una preuba con el attributo: "id"',
-				titleAtt2: 'Esta es una preuba con el attributo: "data-i18n"',
-				img2: 'http://via.placeholder.com/250x250/0ea00e/fff/?text=Existo!'
+				title: 'Esta es una preuba con el attributo: "id"',
+				titleAtt: 'Esta es una preuba con el attributo: "data-i18n"',
+				img: 'http://via.placeholder.com/250x250/0ea00e/fff/?text=Exito!',
+				title: 'Esta es una preuba con el attributo: "id"',
+				titleAtt: 'Esta es una preuba con el attributo: "data-i18n"',
+				img: 'http://via.placeholder.com/250x250/0ea00e/fff/?text=Exito!'
+			}
+		};
+		let testObjs2 = {
+			en:{
+				title2: 'This is a test using "id" attribute with another instance',
+				titleAtt2: 'This is a test using "data-i18n" attribute with another instance',
+				img2: 'http://via.placeholder.com/250x250/0ea00e/fff/?text=Other instance!'
+			},
+			es:{
+				title2: 'Esta es una preuba con el attributo: "id" con otra instancia',
+				titleAtt2: 'Esta es una preuba con el attributo: "data-i18n" con otra instancia',
+				img2: 'http://via.placeholder.com/250x250/0ea00e/fff/?text=Otra instancia!'
 			}
 		};
 
 		/* global proximus */
 		proximus.init(testObj);
+		proximus.init(testObjs2, 'es', 'lang');
 	</script>
 </body>
 </html>
