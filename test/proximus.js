@@ -114,6 +114,14 @@ var proximus = function (document, window) {
 		changeEachHtmlSrc(proximusObj.lngImgClass, langObj, proximusObj.lngAtrrName);
 	};
 
+	var getValue = function getValue(langObj, keyName, cookieName) {
+		var cookieVal = cookies.read(cookieName);
+		if (langObj[cookieVal][keyName] == null || langObj[cookieVal][keyName] == undefined) {
+			return 'That value dosent exist!';
+		}
+		return langObj[cookieVal][keyName];
+	};
+
 	return {
 		init: function init(langObj) {
 			var lng = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : proximusObj.defaultLngName;
@@ -128,6 +136,16 @@ var proximus = function (document, window) {
 		},
 		getVariables: function getVariables() {
 			return proximusObj;
+		},
+		getLang: function getLang() {
+			var cookieName = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : proximusObj.defaultcookieName;
+
+			return cookies.read(cookieName);
+		},
+		getKeyValue: function getKeyValue(langObj, keyName) {
+			var cookieName = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : proximusObj.defaultcookieName;
+
+			return getValue(langObj, keyName, cookieName);
 		}
 	};
 }(document, window);

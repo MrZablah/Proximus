@@ -144,6 +144,14 @@ let proximus = ((document, window) => { // eslint-disable-line
 		// Note: add a way to add your tagname and change that tag name base on your obj
 	};
 
+	const getValue = (langObj, keyName, cookieName) => {
+		let cookieVal = cookies.read(cookieName);
+		if(langObj[cookieVal][keyName] == null || langObj[cookieVal][keyName] == undefined){
+			return 'That value dosent exist!';
+		}
+		return langObj[cookieVal][keyName];
+	};
+
 	return {
 		init(
 			langObj,
@@ -159,6 +167,14 @@ let proximus = ((document, window) => { // eslint-disable-line
 
 		getVariables() {
 			return proximusObj;
+		},
+
+		getLang(cookieName = proximusObj.defaultcookieName){
+			return cookies.read(cookieName);
+		},
+
+		getKeyValue(langObj, keyName, cookieName = proximusObj.defaultcookieName){
+			return getValue(langObj, keyName, cookieName);
 		}
 	};
 

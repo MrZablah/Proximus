@@ -64,7 +64,7 @@ var langObj = {
 }
 // Initialize Proximus
 /*
-* 1. The language object ir Required.
+* 1. The language object is Required.
 * 2. Default staring language is 'en'.
 * 3. Default cookie is lng.
 */
@@ -89,7 +89,7 @@ var langObj = {
 */
 proximus.init(langObj, 'es', 'lang');
 
-// Note: If you like you can have diferent instance of proximus by setting diferent cookies and objt
+// Note: If you like you can have diferent instance of proximus by setting diferent cookies and object
 // Example:
 proximus.init(langObj);
 proximus.init(langObj2, 'es', 'lang');
@@ -103,6 +103,26 @@ Utils functions
 * 2. The cookie name is optional and by default it will be 'lng'.
 */
 proximus.change('es', 'lnp');
+
+// You can get the current language with this function
+/*
+* 1. The cookie name is optional and by default it will be 'lng'.
+*/
+proximus.getLang('lnp'); 
+
+/* Returns: 
+*  'en'
+*/
+
+// You can get the current language with this function (Beta)
+/*
+* 1. The language object is Required.
+* 2. The key you are looking for is Required.
+* 3. The cookie name is optional and by default it will be 'lng'.
+*/
+proximus.getKeyValue(langObj, 'keyObject', 'lnp');
+
+/* It will returns the key value */
 
 // Will return and obj with default values and the variables use by proximus
 proximus.getVariables();
