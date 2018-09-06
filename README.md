@@ -38,16 +38,16 @@ Text change with class i18nAtt, usage example:
 <h1 class="i18nAtt" data-i18n="title">Hello world!</h1>
 ```
 
-Src change with class imgi18n, usage example:
+Src change with class i18nImg, usage example:
 ```html
 <!-- Proximus will change the inside of the 'src' tag for what you specify in the language object if it's define -->
-<!-- Proximus knows you want to change this because of the class 'imgi18n'  -->
+<!-- Proximus knows you want to change this because of the class 'i18nImg'  -->
 <!-- Proximus will take the data-i18n and look for a key with that same data-i18n and set it's value  -->
 <!-- Note: If the key is not found proximus will not change the src -->
-<img class="imgi18n" data-i18n="logo" src="../img/placeholder.png"></img>
+<img class="i18nImg" data-i18n="logo" src="../img/placeholder.png"/>
 <!-- If we use the configuration of the simple initialization example --> 
 <!-- Then this will be the result: -->
-<img class="imgi18n" data-i18n="logo" src="../img/logo.png"></img>
+<img class="i18nImg" data-i18n="logo" src="../img/logo.png"/>
 ```
 
 Simple initialization
